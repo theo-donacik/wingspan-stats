@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/wingspan-stats/static/css/main.907ff03d.css",
-    "main.js": "/wingspan-stats/static/js/main.deba5bfa.js",
+    "main.css": "/wingspan-stats/static/css/main.31c86174.css",
+    "main.js": "/wingspan-stats/static/js/main.ecbf36ee.js",
     "static/js/787.920f98ca.chunk.js": "/wingspan-stats/static/js/787.920f98ca.chunk.js",
     "static/media/ThirstyRoughLight.otf": "/wingspan-stats/static/media/ThirstyRoughLight.816c28449a51fba6228c.otf",
     "static/media/CardenioModern-Regular.otf": "/wingspan-stats/static/media/CardenioModern-Regular.ad3630b7a79e2287c009.otf",
     "static/media/FuturaCondensedRegular.ttf": "/wingspan-stats/static/media/FuturaCondensedRegular.abd460a1c0d391ebcdd9.ttf",
     "index.html": "/wingspan-stats/index.html",
-    "main.907ff03d.css.map": "/wingspan-stats/static/css/main.907ff03d.css.map",
-    "main.deba5bfa.js.map": "/wingspan-stats/static/js/main.deba5bfa.js.map",
+    "main.31c86174.css.map": "/wingspan-stats/static/css/main.31c86174.css.map",
+    "main.ecbf36ee.js.map": "/wingspan-stats/static/js/main.ecbf36ee.js.map",
     "787.920f98ca.chunk.js.map": "/wingspan-stats/static/js/787.920f98ca.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.907ff03d.css",
-    "static/js/main.deba5bfa.js"
+    "static/css/main.31c86174.css",
+    "static/js/main.ecbf36ee.js"
   ]
 }
