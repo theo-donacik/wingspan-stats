@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/wingspan-stats/static/css/main.147788da.css",
-    "main.js": "/wingspan-stats/static/js/main.966a516e.js",
+    "main.js": "/wingspan-stats/static/js/main.2273203a.js",
     "static/js/787.920f98ca.chunk.js": "/wingspan-stats/static/js/787.920f98ca.chunk.js",
     "static/media/ThirstyRoughLight.otf": "/wingspan-stats/static/media/ThirstyRoughLight.816c28449a51fba6228c.otf",
     "static/media/CardenioModern-Regular.otf": "/wingspan-stats/static/media/CardenioModern-Regular.ad3630b7a79e2287c009.otf",
     "static/media/FuturaCondensedRegular.ttf": "/wingspan-stats/static/media/FuturaCondensedRegular.abd460a1c0d391ebcdd9.ttf",
     "index.html": "/wingspan-stats/index.html",
     "main.147788da.css.map": "/wingspan-stats/static/css/main.147788da.css.map",
-    "main.966a516e.js.map": "/wingspan-stats/static/js/main.966a516e.js.map",
+    "main.2273203a.js.map": "/wingspan-stats/static/js/main.2273203a.js.map",
     "787.920f98ca.chunk.js.map": "/wingspan-stats/static/js/787.920f98ca.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.147788da.css",
-    "static/js/main.966a516e.js"
+    "static/js/main.2273203a.js"
   ]
 }
