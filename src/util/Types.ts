@@ -76,9 +76,7 @@ export interface Bird {
   totalFoodCost: number;
   powerColor: Color;
   pinkCondition: string;
-  death: boolean;
-  tuck: boolean;
-  givesBonusCard: boolean;
+  symbol: Symbol;
   ability: string;
   bonusCards: BonusCard[];
   beakDirection: BeakDir;
@@ -88,10 +86,17 @@ export interface Bird {
   directionDiscrepancy: boolean;  
 }
 
+export enum Symbol {
+  Death = "Death",
+  Tuck = "Tuck",
+  Bonus = "Bonus",
+  None = "None",
+}
+
 export enum Habitat {
   Forest,
   Grassland,
-  Wetland
+  Wetland,
 }
 
 export enum Expansion {

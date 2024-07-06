@@ -1,12 +1,13 @@
 import React, { ChangeEvent, UIEventHandler, useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Form, Row, Stack } from 'react-bootstrap';
-import { Bird, ButtonState, Color, Food, Habitat, Nest } from '../util/Types';
+import { Bird, ButtonState, Color, Food, Habitat, Nest, Symbol } from '../util/Types';
 import ListEntry from './ListEntry';
 import ThreeWayFilter from './ThreeWayFilter';
 import TwoWayFilter from './TwoWayFilter';
 import SliderFilter from './SliderFilter';
 import WingspanFilter from './WingspanFilter';
 import ColorFilter from './ColorFilter';
+import SymbolFilter from './SymbolFilter';
 
 export default function BirdList(props : {birds : Bird[]}){
   const INIT_RENDER = 50
@@ -14,6 +15,7 @@ export default function BirdList(props : {birds : Bird[]}){
   const [numRender, setNumRender] = useState<number>(INIT_RENDER)
   const [wingspanSelector, setWingspanSelector] = useState<(arg: boolean) => void>((bool : boolean) => () => {})
   const [colorSelector, setColorSelector] = useState<(arg: boolean) => void>((bool : boolean) => () => {})
+  const [symbolSelector, setSymbolSelector] = useState<(arg: boolean) => void>((bool : boolean) => () => {})
   
   useEffect(() => {
     const handleScroll = () => {
@@ -26,7 +28,6 @@ export default function BirdList(props : {birds : Bird[]}){
 
   // TODO filters:
   // Symbol (bonus card, death, tucking)
-  // Power Color
   // Expantion
   // beak direction
 
@@ -80,6 +81,13 @@ export default function BirdList(props : {birds : Bird[]}){
     Yellow : "#FDD038",
     Teal : "#A0DCC9",
     White : "#F1F3F0",
+  }
+
+  const SymbolFilters : Record<keyof typeof Symbol, string> = {
+    Death : "/img/icons/death.png",
+    Tuck : "/img/icons/tuck.png",
+    Bonus : "/img/icons/bonus.png",
+    None : ""
   }
 
   const deleteFromFilters = (key : string) => {
@@ -138,37 +146,23 @@ export default function BirdList(props : {birds : Bird[]}){
     addToFilters(filter, filterFun)
   }
 
-  const handleWingspan = (
-    filter : (num : number) => boolean,
-    selected : boolean,
-    setSelected : (arg: boolean) => void
+  const handleToggle = (
+    filter : (bird : Bird) => boolean,
+    currentState : boolean,
+    selector : (arg: boolean) => void,
+    componentSelector : (arg : boolean) => void,
+    setComponentSelector : React.Dispatch<React.SetStateAction<(arg: boolean) => void>>,
+    filterName : string
   ) => {
-    if(selected) {
-      setSelected(false)
-      setWingspanSelector(() => () => null)
-      deleteFromFilters("wingspan-filter")
+    if(currentState) {
+      selector(false)
+      setComponentSelector(() => () => null)
+      deleteFromFilters(filterName)
     } else {
-      wingspanSelector(false)
-      setWingspanSelector(() => setSelected)
-      setSelected(true)
-      addToFilters("wingspan-filter", (bird : Bird) => filter(Number(bird.wingspan.replace(/\D/g, ''))))
-    }
-  }
-
-  const handleColor = (
-    filter : (name : Color) => boolean,
-    selected : boolean,
-    setSelected : (arg: boolean) => void
-  ) => {
-    if(selected) {
-      setSelected(false)
-      setColorSelector(() => () => null)
-      deleteFromFilters("color-filter")
-    } else {
-      colorSelector(false)
-      setColorSelector(() => setSelected)
-      setSelected(true)
-      addToFilters("color-filter", (bird : Bird) => filter(bird.powerColor))
+      componentSelector(false)
+      setComponentSelector(() => selector)
+      selector(true)
+      addToFilters(filterName, filter)
     }
   }
 
@@ -216,8 +210,15 @@ export default function BirdList(props : {birds : Bird[]}){
                 <WingspanFilter
                   num={filter[0]}
                   symbol={filter[1]}
-                  handler={handleWingspan}
-                  />
+                  handler={(filter, selected, setSelected) => handleToggle(
+                    (bird : Bird) => filter(Number(bird.wingspan.replace(/\D/g, ''))),
+                    selected,
+                    setSelected,
+                    wingspanSelector,
+                    setWingspanSelector,
+                    "wingspan-filter"
+                  )}
+                />
               )
             })
           }
@@ -229,11 +230,39 @@ export default function BirdList(props : {birds : Bird[]}){
                 <ColorFilter 
                   name={name as Color}
                   color={ColorFilters[name as Color]}
-                  handler={handleColor}
+                  handler={(filter, selected, setSelected) => handleToggle(
+                    (bird : Bird) => filter(bird.powerColor),
+                    selected,
+                    setSelected,
+                    colorSelector,
+                    setColorSelector,
+                    "color-filter"
+                  )}
                 />
               )
             })
           }
+        </Row>
+        <Row>
+          {
+              Object.keys(Symbol).map((symbol) => {
+                return (
+                  symbol !== Symbol.None &&
+                  <SymbolFilter 
+                    symbol={symbol as Symbol}
+                    img={process.env.PUBLIC_URL + SymbolFilters[symbol as Symbol]}
+                    handler={(filter, selected, setSelected) => handleToggle(
+                      (bird : Bird) => filter(bird.symbol),
+                      selected,
+                      setSelected,
+                      symbolSelector,
+                      setSymbolSelector,
+                      "symbol-filter"
+                    )}
+                  />
+                )
+              })
+            }
         </Row>
         <Row>
           {

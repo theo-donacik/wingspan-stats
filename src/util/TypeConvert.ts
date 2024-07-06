@@ -1,4 +1,4 @@
-import { BeakDir, Bird, BonusCard, Color, Expansion, Food, Habitat, Nest, RawBird } from "./Types";
+import { BeakDir, Bird, BonusCard, Color, Expansion, Food, Habitat, Nest, RawBird, Symbol } from "./Types";
 
 // Converts the RawBird type imported from the JSON into a more code-friendly Bird type
 export function rawBirdToBird(raw : RawBird) : Bird {
@@ -34,9 +34,10 @@ export function rawBirdToBird(raw : RawBird) : Bird {
     totalFoodCost: +raw["Total"].replace(/[^0-9]/g, ''),
     powerColor: raw["Color"] as Color,
     pinkCondition: raw["Pink Condition"],
-    death: raw["Death"] === "x",
-    tuck: raw["Tuck"] === "x",
-    givesBonusCard: raw["Bonus Card"] === "x",
+    symbol: raw["Death"] === "x" ? Symbol.Death 
+          : raw["Tuck"] === "x" ? Symbol.Tuck 
+          : raw["Bonus Card"] === "x" ? Symbol.Bonus
+          : Symbol.None,
     ability: raw["Ability"],
     bonusCards: [
                   raw["Anatomist (Body Parts)"] === "x" ? BonusCard.Anatomist : null,

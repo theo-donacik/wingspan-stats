@@ -54,9 +54,7 @@ export default function CardView(props : {bird : Bird}) {
       <div className="power overlay">
         <PowerPart powerColor={props.bird.powerColor}
                    powerText={props.bird.ability}
-                   death={props.bird.death}
-                   tuck={props.bird.tuck}
-                   bonus={props.bird.givesBonusCard}
+                   symbol={props.bird.symbol}
           />
       </div>
       <div className="trivia overlay">

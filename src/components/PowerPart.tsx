@@ -1,6 +1,6 @@
-import { Color } from "../util/Types";
+import { Color, Symbol } from "../util/Types";
 
-export default function PowerPart(props : {powerColor : Color, powerText : string, death : boolean, tuck : boolean, bonus : boolean}) {
+export default function PowerPart(props : {powerColor : Color, powerText : string, symbol : Symbol}) {
   const powerMap: {[key in Color]: string} = {
     [Color.White]: "WHEN PLAYED",
     [Color.Brown]: "WHEN ACTIVATED",
@@ -10,15 +10,15 @@ export default function PowerPart(props : {powerColor : Color, powerText : strin
   }
 
   const symbol = process.env.PUBLIC_URL 
-               + (props.death ? "/img/icons/death.png" 
-               :  props.tuck ? "/img/icons/tuck.png" 
-               :  props.bonus ? "/img/icons/bonus.png"
+               + (props.symbol === Symbol.Death ? "/img/icons/death.png" 
+               :  props.symbol === Symbol.Tuck ? "/img/icons/tuck.png" 
+               :  props.symbol === Symbol.Bonus ? "/img/icons/bonus.png"
                :  "")
   let key = 0
   return (
     <div className="power-container">
       {
-        (props.death || props.tuck || props.bonus) && <img className="power-icon" src={symbol}/>
+        (props.symbol !== Symbol.None) && <img className="power-icon" src={symbol}/>
       }
       {
         props.powerText != '---' && 
