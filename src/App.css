@@ -1,10 +1,340 @@
 .App {
   text-align: center;
+  background-color: #AAE4DE;
+  font-family: "CardenioModern";
+  font-size: 40;
+  color: #2C2E35;
+}
+
+html, body {
+  font-family: "CardenioModern";
+  background-color: #AAE4DE;
+}
+
+.list-entry {
+  height: 100px,
+}
+
+.search {
+  font-size: 50px;
+  padding: 10px;
+}
+
+.list-header {
+  font-size: 30px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.list-entry-row {
+  display: flex;
+  align-items: center;
+  justify-content: left; 
+}
+
+.list-entry-row > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.list-entry-habitat {
+  height: 60px;
+  width: auto;
+}
+
+.list-entry-habitat > div > div > .three {
+  transform: translate(0px, -10px);
+}
+
+.list-entry-habitat > div > div > .top{
+  transform: translate(21px, 10px);
+}
+
+.list-entry-wingspan {
+  transform: translate(0px, 10px);
+}
+
+.list-entry-wingspan > div > img {
+  transform: translate(0px, -10px);
+}
+
+.list-entry-food {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-container {
+  position: relative;
+  width: 300px;
+  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-200px, 0%);
+}
+
+.overlay.food-background {
+  display: inline-block;
+  width: 101px;
+  height: 120px;
+  z-index: 0;
+  border: 2px solid rgba(0, 0, 0, 0.05);
+  transform: translate(-72px, -60px);
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  background: #C8C1B4;
+}
+
+.overlay.name-background {
+  display: inline-block;
+  width: 260px;
+  height: 80px;
+  z-index: 0;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  border-right: 0px;
+  transform: translate(35px, -50px);
+}
+
+.overlay-card {
+  width: 400px;
+  height: auto;
+  border-radius: 15px;
+}
+
+.habitat-icon {
+  width: 40px;
+}
+
+.habitat-icon.three {
+  transform: translate(0px, -35px);
+}
+
+.habitat-icon.top {
+  width: 38px;
+  transform: translate(0px, -18px);
+}
+
+.food-icon {
+  width: 22px;
+  z-index: -1;
+}
+
+.delin-icon {
+  width: 12px;
+  padding: 2px;
+}
+
+.star-icon {
+  transform: translate(5px, -10px);
+}
+
+.name.common {
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.name.scientific {
+  font-size: 15px;
+  font-family: 'ThirstyRough';
+  color: #595B61;
+  width: 100%;
+  transform: translate(0%, -50%);
+}
+
+.feather-icon {
+  width: 25px;
+  height: auto;
+  transform: translate(-30%, 2%);
+}
+
+.nest-icon {
+  width: 35px;
+}
+
+.egg-icon {
+  width: 15px;
+  padding-left: 4px;
+}
+
+.wingspan-icon {
+  width: 45px;
+  height: auto;
+  transform: translate(0px, -15px);
+}
+
+.power-icon {
+  width: auto;
+  height: 25px;
+  padding-right: 6px;
+  transform: translate(0px, 0px);
+}
+
+.feather-container {
+  display: flex;
+  font-weight: bold;
+  font-size: 37px;
+}
+
+.wingspan-container {
+  font-weight: bold;
+  font-size: 18px;
+  color: #595B61;
+  text-align: center;
+}
+
+.power-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: start;
+}
+
+.power-body {
+  font-family: 'FuturaCondensed';
+  font-size: 18px;
+  font-weight: normal;
+  white-space: normal;
+  text-align: left;
+}
+
+.overlay {
+  position: absolute;
+  top: 10%;
+  left: 35%;
+  z-index: 100;
+}
+
+.overlay.habitat {
+  transform: translate(-80px, -35px);
+  padding: 10px;
+  width: 40%;
+}
+
+.overlay.food {
+  transform: translate(-90px, 20px); 
+  padding: 10px;
+  width: 45%;
+}
+
+.overlay.point {
+  transform: translate(-80px, 90px); 
+  padding: 10px;
+}
+
+.overlay.name {
+  width: 100%;
+  transform: translate(15px, -40px); 
+  white-space: nowrap;
+  text-align: center;
+}
+
+.overlay.nest {
+  transform: translate(-85px, 155px); 
+  padding: 10px;
+}
+
+.overlay.egg {
+  transform: translate(-80px, 200px); 
+  width: 40px;
+  padding: 4px;
+}
+
+.overlay.wingspan {
+  transform: translate(210px, 300px); 
+  width: auto;
+}
+
+.overlay.wingspan-blank {
+  transform: translate(210px, 440px);
+}
+
+.overlay.power {
+  transform: translate(-90px, 340px); 
+  width: 370px;
+  height: 100px;
+  font-size: 20px;
+  font-weight: bold;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  line-height: 20px;
+}
+
+.overlay.trivia {
+  font-family: 'FuturaCondensed';
+  font-size: 14px;
+  white-space: normal;
+  font-style: italic;
+  font-weight: bold;
+  text-align: left;
+  color: #847E72;
+  left: 40%;
+  top: 88%;
+  width: 80%;
 }
 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+
+.three-way-btn {
+  width: 40px;
+  opacity: .5;
+  height: 40px;
+  object-fit: scale-down;
+}
+
+.three-way-btn.active {
+  opacity: 1;
+}
+
+.two-way-btn {
+  width: 40px;
+  height: 40px;
+  object-fit: scale-down;
+}
+
+.two-way-btn.active {
+  opacity: 1;
+}
+
+.two-way-btn.inactive {
+  opacity: .5;
+}
+
+.slider-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: scale-down;
+}
+
+.slash {
+  position: relative;
+}
+.slash-text {
+  position: absolute;
+  left: 40%;
+  bottom: -25%;
+  color: red;
+  font-size: 40px;
+}
+
+.wingspan-btn.normal {
+  color: black;
+  opacity: .3;
+  font-weight: bold;
+  background-color: transparent;
+  border: none;
+}
+
+.wingspan-btn.selected {
+  opacity: 1;
 }
 
 @media (prefers-reduced-motion: no-preference) {

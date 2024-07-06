@@ -11,3 +11,24 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: "CardenioModern";
+  src: local("CardenioModernRegular"),
+   url("./fonts/CardenioModern/CardenioModern-Regular.otf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "ThirstyRough";
+  src: local("ThirstyRough"),
+   url("./fonts/ThirstyRough/ThirstyRoughLight.otf") format("truetype");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "FuturaCondensed";
+  src: local("FuturaCondensed"),
+   url("./fonts/FuturaCondensedRegular/FuturaCondensedRegular.ttf") format("truetype");
+  font-weight: normal;
+}
