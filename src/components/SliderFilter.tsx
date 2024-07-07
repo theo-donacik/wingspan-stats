@@ -2,23 +2,23 @@ import { useEffect, useState } from "react"
 import { Col, Row } from "react-bootstrap"
 import { ButtonState } from "../util/Types"
 import MultiRangeSlider, { ChangeResult } from "multi-range-slider-react";
+import { ArrowClockwise } from "react-bootstrap-icons";
 
 export default function SliderFilter(props : {filter : string, 
                                               img : string, 
                                               min : number, 
                                               max : number, 
                                               handler : {(upper : number, lower : number) : void}}) {
-  const [upper, setUpper] = useState(props.max)
-  const [lower, setLower] = useState(props.min)
+  const [min, setMin] = useState(props.min)
+  const [max, setMax] = useState(props.max)
 
   useEffect(() => {
-    props.handler(upper, lower)
-  }, [upper, lower])
+    props.handler(max, min)
+  }, [max, min])
 
   const handler = (e : ChangeResult) => {
-    console.log(e)
-    setUpper(e.maxValue)
-    setLower(e.minValue)
+    setMin(e.minValue)
+    setMax(e.maxValue)
   }
 
   return(
@@ -29,15 +29,19 @@ export default function SliderFilter(props : {filter : string,
           style={{width: "100%", border: "none", boxShadow: "none"}}
           min={props.min}
           max={props.max}
-          minValue={props.min}
-          maxValue={props.max}
+          minValue={min}
+          maxValue={max}
           barInnerColor="blue"
           step={1}
           ruler={false}
+          labels={Array.from({length: props.max + 1}, (x, i) => i.toString())}
           subSteps
           canMinMaxValueSame
           onChange={handler}
         />
+        <div style={{width: "40px", alignContent: "center", justifyContent: "center", paddingBottom: "15px"}} onClick={() => {setMax(props.max); setMin(props.min)}}>
+          <ArrowClockwise/>
+        </div>
       </div>
     </Row>
   )

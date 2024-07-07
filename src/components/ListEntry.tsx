@@ -12,6 +12,7 @@ import PointPart from './PointPart';
 export default function ListEntry(props : {bird : Bird, hidden? : boolean}){
   return(
     <Accordion style={props.hidden ? {display:'none'} : {}}>
+      <Container fluid className="d-grid gap-4">
       <Accordion.Item eventKey={props.bird.name}>
         <Accordion.Header>
           <Container className='list-header' fluid>
@@ -48,6 +49,7 @@ export default function ListEntry(props : {bird : Bird, hidden? : boolean}){
           <CardView bird={props.bird}></CardView>
         </Accordion.Body>
       </Accordion.Item>
+      </Container>
     </Accordion>
   )
 }

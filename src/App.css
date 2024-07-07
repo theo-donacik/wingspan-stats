@@ -20,6 +20,11 @@ html, body {
   padding: 10px;
 }
 
+.dropdown-btn {
+  width: 100px;
+  justify-content: center;
+}
+
 .list-header {
   font-size: 30px;
   width: 100%;

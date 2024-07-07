@@ -46,7 +46,7 @@ export default function FoodPart(props : {food: FoodSet, slashed: boolean, alter
   let key = 0
   
   return(
-    <div>
+    <div style={{whiteSpace: "nowrap", display: "inline"}}>
       {
         toRender.map((src : string) => {
           var className = "food-icon"; 
