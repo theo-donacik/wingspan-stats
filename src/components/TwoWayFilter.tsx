@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Col } from "react-bootstrap"
-import { ButtonState } from "../util/Types"
 
 export default function TwoWayFilter(props : {filter : string, img : string, handler : {(state : Boolean) : void}}) {
   const [state, setState] = useState(false)
@@ -15,7 +14,7 @@ export default function TwoWayFilter(props : {filter : string, img : string, han
   return(
     <Col md={1} xs={2} id={props.filter} 
         onClick={() => onClick()}>
-        <img className={imgClass} src={props.img}/>
+        <img alt="" className={imgClass} src={props.img}/>
     </Col>
   )
 }

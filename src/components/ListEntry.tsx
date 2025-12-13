@@ -1,5 +1,4 @@
-import React, { CSSProperties, useEffect, useState } from 'react';
-import { Accordion, Card, Col, Container, Row, useAccordionButton } from 'react-bootstrap';
+import { Accordion, Col, Container, Row } from 'react-bootstrap';
 import { Bird } from '../util/Types';
 import HabitatPart from './HabitatPart';
 import CardView from './CardView';

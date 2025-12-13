@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Button, Col } from "react-bootstrap"
-import { ButtonState } from "../util/Types"
 
 export default function WingspanFilter(props : {
   num : number, 
@@ -14,16 +13,16 @@ export default function WingspanFilter(props : {
 
   const onClick = () => {
     let func
-    if(props.symbol == '<') {
+    if(props.symbol === '<') {
       func = (x : number) => {return x < props.num}
     }
-    else if(props.symbol == '<=') {
+    else if(props.symbol === '<=') {
       func = (x : number) => {return x <= props.num}
     }
-    else if(props.symbol == '>') {
+    else if(props.symbol === '>') {
       func = (x : number) => {return x > props.num}
     }
-    else if (props.symbol == '>='){
+    else if (props.symbol === '>='){
       func = (x : number) => {return x >= props.num}
     }
     else {

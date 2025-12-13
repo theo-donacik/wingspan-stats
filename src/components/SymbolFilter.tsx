@@ -25,7 +25,7 @@ export default function SymbolFilter(props : {
 
     return (
       <Col md={1} xs={2} onClick={handleClick}>
-        <img className={imgClass} src={props.img} />
+        <img alt="" className={imgClass} src={props.img} />
       </Col>
     )
   }

@@ -1,4 +1,4 @@
-import { Accordion, Button, Card, Col, Container, Form, InputGroup, Row, useAccordionButton } from 'react-bootstrap';
+import { Accordion, Container, Form, InputGroup, Row, useAccordionButton } from 'react-bootstrap';
 import { Bird, ButtonState, Color, Food, Habitat, Nest, Symbol } from "../util/Types"
 import ThreeWayFilter from './ThreeWayFilter';
 import TwoWayFilter from './TwoWayFilter';
@@ -18,14 +18,14 @@ export default function FilterBox(props : {
   const [symbolSelector, setSymbolSelector] = useState<(arg: boolean) => void>((bool : boolean) => () => {})
 
   const ThreeWayFilterMap: {[value: string]: [string, {(bird: Bird): boolean}]} = {
-    "worm-filter" : ["/img/icons/worm.png", (bird) => bird.food[Food.Worm] != 0],
-    "wheat-filter" : ["/img/icons/wheat.png", (bird) => bird.food[Food.Wheat] != 0],
-    "fish-filter" : ["/img/icons/fish.png", (bird) => bird.food[Food.Fish] != 0],
-    "rat-filter" : ["/img/icons/rat.png", (bird) => bird.food[Food.Rat] != 0],
-    "cherry-filter" : ["/img/icons/cherry.png", (bird) => bird.food[Food.Cherry] != 0],
-    "nectar-filter" : ["/img/icons/nectar.png", (bird) => bird.food[Food.Nectar] != 0],
-    "any-filter" : ["/img/icons/any-food.png", (bird) => bird.food[Food.Any] != 0],
-    "none-filter" : ["/img/icons/no-food.png", (bird) => Object.values(Food).every((val : Food) => bird.food[val] == 0)],
+    "worm-filter" : ["/img/icons/worm.png", (bird) => bird.food[Food.Worm] !== 0],
+    "wheat-filter" : ["/img/icons/wheat.png", (bird) => bird.food[Food.Wheat] !== 0],
+    "fish-filter" : ["/img/icons/fish.png", (bird) => bird.food[Food.Fish] !== 0],
+    "rat-filter" : ["/img/icons/rat.png", (bird) => bird.food[Food.Rat] !== 0],
+    "cherry-filter" : ["/img/icons/cherry.png", (bird) => bird.food[Food.Cherry] !== 0],
+    "nectar-filter" : ["/img/icons/nectar.png", (bird) => bird.food[Food.Nectar] !== 0],
+    "any-filter" : ["/img/icons/any-food.png", (bird) => bird.food[Food.Any] !== 0],
+    "none-filter" : ["/img/icons/no-food.png", (bird) => Object.values(Food).every((val : Food) => bird.food[val] === 0)],
     "slashed-filter" : ["/img/icons/slash.png", (bird) => bird.slashed],
     "wetland-filter" : ["/img/icons/wetland-large.png", (bird) => bird.habitats.includes(Habitat.Wetland)],
     "grassland-filter" : ["/img/icons/grassland-large.png", (bird) => bird.habitats.includes(Habitat.Grassland)],
@@ -33,12 +33,12 @@ export default function FilterBox(props : {
   }
 
   const TwoWayFilterMap: {[value: string]: [string, {(bird: Bird): boolean}]} = {
-    "sticky-filter" : ["/img/icons/sticky-nest-large.png", (bird) => bird.nest != Nest.Sticky],
-    "holey-filter" : ["/img/icons/holey-nest-large.png", (bird) => bird.nest != Nest.Holey],
-    "eggy-filter" : ["/img/icons/eggy-nest-large.png", (bird) => bird.nest != Nest.Eggy],
-    "nesty-filter" : ["/img/icons/nesty-nest-large.png", (bird) => bird.nest != Nest.Nesty],
-    "star-filter" : ["/img/icons/star-nest-large.png", (bird) => bird.nest != Nest.Star],
-    "none-filter" : ["/img/icons/none.png", (bird) => bird.nest != Nest.None],
+    "sticky-filter" : ["/img/icons/sticky-nest-large.png", (bird) => bird.nest !== Nest.Sticky],
+    "holey-filter" : ["/img/icons/holey-nest-large.png", (bird) => bird.nest !== Nest.Holey],
+    "eggy-filter" : ["/img/icons/eggy-nest-large.png", (bird) => bird.nest !== Nest.Eggy],
+    "nesty-filter" : ["/img/icons/nesty-nest-large.png", (bird) => bird.nest !== Nest.Nesty],
+    "star-filter" : ["/img/icons/star-nest-large.png", (bird) => bird.nest !== Nest.Star],
+    "none-filter" : ["/img/icons/none.png", (bird) => bird.nest !== Nest.None],
   }
 
   const SliderFilterMap: {[value: string]: [string, {(bird: Bird, upper : number, lower : number): boolean}, number, number]} = {

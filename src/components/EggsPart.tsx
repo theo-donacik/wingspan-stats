@@ -6,12 +6,12 @@ export default function EggsPart(props : {eggs : number}) {
       {
         [...Array(props.eggs)].map(() => {
           key += 1
-          return(<img className="egg-icon" src={eggImg} key={key}/>)
+          return(<img alt="" className="egg-icon" src={eggImg} key={key}/>)
         })
       }
       {
-        props.eggs % 2 == 0 ? <></> 
-                            : <img className="egg-icon"/>
+        props.eggs % 2 === 0 ? <></> 
+                            : <img alt="" className="egg-icon"/>
       }
     </div>
   )

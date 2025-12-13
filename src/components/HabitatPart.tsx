@@ -12,7 +12,7 @@ export default function HabitatPart(props : {habitats: Habitat[]}) {
       <div>
         {
           props.habitats.slice().reverse().map((src : Habitat) => {
-            return(<img className="habitat-icon" src={habitatMap[src]} key={src}/>)
+            return(<img alt="" className="habitat-icon" src={habitatMap[src]} key={src}/>)
           })
         }
       </div>
@@ -22,11 +22,11 @@ export default function HabitatPart(props : {habitats: Habitat[]}) {
     return(
       <div>
         <div>
-          <img className="habitat-icon three top" src={habitatMap[Habitat.Grassland]}></img>
+          <img alt="" className="habitat-icon three top" src={habitatMap[Habitat.Grassland]}></img>
         </div>
         <div>
-          <img className="habitat-icon three" src={habitatMap[Habitat.Wetland]}></img>
-          <img className="habitat-icon three" src={habitatMap[Habitat.Forest]}></img>
+          <img alt="" className="habitat-icon three" src={habitatMap[Habitat.Wetland]}></img>
+          <img alt="" className="habitat-icon three" src={habitatMap[Habitat.Forest]}></img>
         </div>
       </div>
       

@@ -3,7 +3,7 @@ export default function WingspanPart(props : {wingspan : string}){
   return(
     <div className="wingspan-container">
       <div>{props.wingspan}</div>
-      <img className="wingspan-icon" src={wingspanSrc}/>
+      <img alt="" className="wingspan-icon" src={wingspanSrc}/>
     </div>
   )
 }

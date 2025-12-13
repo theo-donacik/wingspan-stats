@@ -8,11 +8,11 @@ export default function ThreeWayFilter(props : {filter : string, img : string, h
   const [overlayClass, setOverlayClass] = useState(false)
 
   useEffect(() => {
-    setImgClass("three-way-btn " + (state == ButtonState.Off 
-      ? "" : state == ButtonState.Inclusive 
+    setImgClass("three-way-btn " + (state === ButtonState.Off 
+      ? "" : state === ButtonState.Inclusive 
       ? "active" 
       : "excluded"))
-    setOverlayClass(state == ButtonState.Exclusive)
+    setOverlayClass(state === ButtonState.Exclusive)
   }, [state])
 
   const nextState = (state : ButtonState) => {
@@ -35,7 +35,7 @@ export default function ThreeWayFilter(props : {filter : string, img : string, h
           onClick={() => onClick()}>
         <div className="slash">
           <div>
-            <img className={imgClass} src={props.img}/>
+            <img alt="" className={imgClass} src={props.img}/>
           </div>
           <div className="slash-text">
             {overlayClass? "X" : ""}

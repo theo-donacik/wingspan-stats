@@ -18,10 +18,10 @@ export default function PowerPart(props : {powerColor : Color, powerText : strin
   return (
     <div className="power-container">
       {
-        (props.symbol !== Symbol.None) && <img className="power-icon" src={symbol}/>
+        (props.symbol !== Symbol.None) && <img alt="" className="power-icon" src={symbol}/>
       }
       {
-        props.powerText != '---' && 
+        props.powerText !== '---' && 
         <div>
           <span>{powerMap[props.powerColor]}: </span>
           {

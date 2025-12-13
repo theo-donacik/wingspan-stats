@@ -12,7 +12,7 @@ export default function NestPart(props : {nest : Nest}) {
 
   return(
     <div>
-      <img className="nest-icon" src={nestMap[props.nest]}></img>
+      <img alt="" className="nest-icon" src={nestMap[props.nest]}></img>
     </div>
   )
 }

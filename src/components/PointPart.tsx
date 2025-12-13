@@ -4,7 +4,7 @@ export default function PointPart(props : {points : number}) {
   return(
     <div className="feather-container">
       <div>{props.points}</div>
-      <img className="feather-icon" src={featherSrc}></img>
+      <img alt="" className="feather-icon" src={featherSrc}></img>
     </div>
   )
 }

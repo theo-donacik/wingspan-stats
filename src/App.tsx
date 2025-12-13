@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
 import useGoogleSheets from 'use-google-sheets';
 import { Bird, RawBird } from './util/Types';

@@ -20,7 +20,7 @@ export default function CardView(props : {bird : Bird}) {
 
   return(
     <div className="card-container">
-      <img 
+      <img alt="" 
         src={colorsMap[powerColor]}
         className="overlay-card"
       />
@@ -48,7 +48,7 @@ export default function CardView(props : {bird : Bird}) {
       <div className="egg overlay">
         <EggsPart eggs={props.bird.eggCapacity}/>
       </div>
-      <div className={"overlay wingspan" + (props.bird.ability == '---' ? "-blank" : "")}>
+      <div className={"overlay wingspan" + (props.bird.ability === '---' ? "-blank" : "")}>
         <WingspanPart wingspan={props.bird.wingspan}/>
       </div>
       <div className="power overlay">
