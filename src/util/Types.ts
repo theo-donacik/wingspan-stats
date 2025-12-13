@@ -27,8 +27,8 @@ export interface RawBird {
   "Total": string;
   "Color": string;
   "Pink Condition": string;
-  "Death": string;
-  "Tuck": string;
+  "Predator": string;
+  "Flocking": string;
   "Bonus Card": string;
   "Ability": string;
   "Anatomist (Body Parts)": string;

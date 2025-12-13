@@ -14,7 +14,7 @@ export default function SliderFilter(props : {filter : string,
   const handler = (e : ChangeResult) => {
     setMin(e.minValue)
     setMax(e.maxValue)
-    props.handler(props.filter, max, min)
+    props.handler(props.filter, e.maxValue, e.minValue)
   }
 
   return(

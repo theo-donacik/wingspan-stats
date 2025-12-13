@@ -36,8 +36,8 @@ export function rawBirdToBird(raw : RawBird) : Bird {
     totalFoodCost: +raw["Total"].replace(/[^0-9]/g, ''),
     powerColor: raw["Color"] as Color,
     pinkCondition: raw["Pink Condition"],
-    symbol: raw["Death"] === "x" ? Symbol.Death 
-          : raw["Tuck"] === "x" ? Symbol.Tuck 
+    symbol: raw["Predator"] === "x" ? Symbol.Death 
+          : raw["Flocking"] === "x" ? Symbol.Tuck 
           : raw["Bonus Card"] === "x" ? Symbol.Bonus
           : Symbol.None,
     ability: raw["Ability"],
