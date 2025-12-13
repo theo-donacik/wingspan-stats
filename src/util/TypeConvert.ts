@@ -1,11 +1,13 @@
-import { BeakDir, Bird, BonusCard, Color, Expansion, Food, Habitat, Nest, RawBird, Symbol } from "./Types";
+import { BeakDir, Bird, BonusCard, Color, Expansion, Food, Habitat, Nest, RawBird, SubExpansion, Symbol } from "./Types";
 
 // Converts the RawBird type imported from the JSON into a more code-friendly Bird type
 export function rawBirdToBird(raw : RawBird) : Bird {
   var bird : Bird = {
     name: raw["Name"],
+    extraName: raw["Extra Name (if applicable)"],
     scientificName: raw["Scientific Name"],
     expansion: raw["Expansion"] as Expansion,
+    subExpansion: raw["Sub Expansion"] === "" ? SubExpansion.Base : raw["Sub Expansion"] as SubExpansion,
     habitats: [raw["Forest"] === "x" ? Habitat.Forest : null,
               raw["Grassland"] === "x" ? Habitat.Grassland : null,
               raw["Wetland"] === "x" ? Habitat.Wetland: null
@@ -19,8 +21,8 @@ export function rawBirdToBird(raw : RawBird) : Bird {
         : raw["Star Nest"] === "x" ? Nest.Star
         : Nest.None,
     feathers: raw["Feathers"],
-    eggCapacity: raw["Eggs"] === "-" ? 0 : +raw["Eggs"],
-    wingspan: raw["Wingspan"],
+    eggCapacity: raw["Egg Capacity"] === "-" ? 0 : + raw["Egg Capacity"],
+    wingspan: raw["Wingspan (cm)"] === "*" ? "*" : raw["Wingspan (cm)"] + "cm",
     food: {[Food.Worm]: +raw["Worm"] || 0,
            [Food.Wheat]: +raw["Wheat"] || 0,
            [Food.Cherry]: +raw["Cherry"] || 0,

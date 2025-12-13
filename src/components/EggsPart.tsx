@@ -1,6 +1,7 @@
 export default function EggsPart(props : {eggs : number}) {
   const eggImg = process.env.PUBLIC_URL + "/img/icons/egg-small.png"
   let key = 0
+
   return(
     <div>
       {

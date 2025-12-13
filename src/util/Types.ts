@@ -1,7 +1,9 @@
 export interface RawBird {
   "Name": string;
   "Scientific Name": string;
+  "Extra Name (if applicable)": string;
   "Expansion": string;
+  "Sub Expansion": string;
   "Forest": string;
   "Grassland": string;
   "Wetland": string;
@@ -11,8 +13,8 @@ export interface RawBird {
   "Sticky Nest": string;
   "Star Nest": string;
   "Feathers": number;
-  "Eggs": string;
-  "Wingspan": string;
+  "Egg Capacity": string;
+  "Wingspan (cm)": string;
   "Worm": string;
   "Wheat": string;
   "Cherry": string;
@@ -63,8 +65,10 @@ export interface RawBird {
 
 export interface Bird {
   name: string;
+  extraName: string;
   scientificName: string;
   expansion: Expansion;
+  subExpansion: SubExpansion;
   habitats: Habitat[];
   nest: Nest;
   feathers: number;
@@ -104,6 +108,17 @@ export enum Expansion {
   European = "European",
   Oceania = "Oceania",
   Asia = "Asia",
+  FanDesigned = "Fan-Designed",
+}
+
+export enum SubExpansion {
+  Base = "Base",
+  USA = "Birds of the U.S.A.",
+  Europe = "Birds of Continental Europe",
+  Asian = "Additional Asian Avians",
+  NewZealand = "Birds of New Zealand",
+  Canada = "Birds of Canada",
+  British = "British Birds",
   Swift = "Swift Start",
   DuetSwift = "Duet Swift Start"
 }
