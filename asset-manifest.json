@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/wingspan-stats/static/css/main.110dbc01.css",
-    "main.js": "/wingspan-stats/static/js/main.d725274e.js",
+    "main.js": "/wingspan-stats/static/js/main.d0dc355a.js",
     "static/js/453.84f6ceb1.chunk.js": "/wingspan-stats/static/js/453.84f6ceb1.chunk.js",
     "static/media/ThirstyRoughLight.otf": "/wingspan-stats/static/media/ThirstyRoughLight.816c28449a51fba6228c.otf",
     "static/media/CardenioModern-Regular.otf": "/wingspan-stats/static/media/CardenioModern-Regular.ad3630b7a79e2287c009.otf",
@@ -10,6 +10,6 @@
   },
   "entrypoints": [
     "static/css/main.110dbc01.css",
-    "static/js/main.d725274e.js"
+    "static/js/main.d0dc355a.js"
   ]
 }
