@@ -195,6 +195,7 @@ export default function FilterBox(props : {
                       setWingspanSelector,
                       "wingspan-filter"
                     )}
+                    key={filter[0] + filter[1]}
                   />
                 )
               })
@@ -215,6 +216,7 @@ export default function FilterBox(props : {
                       setColorSelector,
                       "color-filter"
                     )}
+                    key={name}
                   />
                 )
               })
@@ -236,6 +238,7 @@ export default function FilterBox(props : {
                         setSymbolSelector,
                         "symbol-filter"
                       )}
+                      key={symbol}
                     />
                   )
                 })
@@ -248,7 +251,7 @@ export default function FilterBox(props : {
                   <SliderFilter
                     filter={filter} 
                     img={process.env.PUBLIC_URL + SliderFilterMap[filter][0]}
-                    handler={(upper : number, lower : number) => handleSlider(filter, upper, lower)}
+                    handler={handleSlider}
                     min={SliderFilterMap[filter][2]}
                     max={SliderFilterMap[filter][3]}
                     key={filter}

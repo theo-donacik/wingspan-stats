@@ -19,7 +19,6 @@
     "react-bootstrap": "^2.9.2",
     "react-bootstrap-icons": "^1.11.4",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
     "react-virtualized": "^9.22.5",
     "react-virtualized-auto-sizer": "^1.0.22",
     "react-window": "^1.8.10",
@@ -30,9 +29,9 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "test": "react-app-rewired test",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
@@ -56,6 +55,7 @@
   "devDependencies": {
     "@types/react-virtualized": "^9.21.29",
     "@types/react-window": "^1.8.8",
-    "gh-pages": "^6.1.1"
+    "gh-pages": "^6.1.1",
+    "react-app-rewired": "^2.2.1"
   }
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Row } from "react-bootstrap"
 import MultiRangeSlider, { ChangeResult } from "multi-range-slider-react";
 import { ArrowClockwise } from "react-bootstrap-icons";
@@ -7,17 +7,14 @@ export default function SliderFilter(props : {filter : string,
                                               img : string, 
                                               min : number, 
                                               max : number, 
-                                              handler : {(upper : number, lower : number) : void}}) {
+                                              handler : {(filter: string, upper : number, lower : number) : void}}) {
   const [min, setMin] = useState(props.min)
   const [max, setMax] = useState(props.max)
-
-  useEffect(() => {
-    props.handler(max, min)
-  }, [max, min, props])
 
   const handler = (e : ChangeResult) => {
     setMin(e.minValue)
     setMax(e.maxValue)
+    props.handler(props.filter, max, min)
   }
 
   return(
