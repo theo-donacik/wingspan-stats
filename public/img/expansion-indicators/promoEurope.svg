@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="Layer_1"
+   data-name="Layer 1"
+   width="1000"
+   height="1000"
+   viewBox="0 0 750.02157 750.02157"
+   version="1.1"
+   sodipodi:docname="promoEurope.svg"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="0.87081272"
+     inkscape:cx="304.31343"
+     inkscape:cy="423.16791"
+     inkscape:window-width="1266"
+     inkscape:window-height="1392"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="Layer_1" />
+  <defs
+     id="defs1">
+    <style
+       id="style1">
+      .cls-1 {
+        fill: #164194;
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-3 {
+        fill: #ffed00;
+      }
+    </style>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1">
+      <circle
+         style="fill:#000000;stroke-width:0.25253"
+         id="circle2"
+         cx="77.955002"
+         cy="77.954994"
+         r="77.955002" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath2">
+      <circle
+         style="fill:#000000;stroke-width:0.728893"
+         id="circle3"
+         cx="375.01077"
+         cy="375.01077"
+         r="225.00647" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath3">
+      <circle
+         style="fill:#000000;stroke-width:0.728893"
+         id="circle4"
+         cx="375.01077"
+         cy="375.01077"
+         r="225.00647" />
+    </clipPath>
+  </defs>
+  <rect
+     class="cls-1"
+     width="450.01294"
+     height="450.01294"
+     id="rect1"
+     x="150.00432"
+     y="150.00432"
+     style="stroke-width:2.88636"
+     clip-path="url(#clipPath3)" />
+  <circle
+     class="cls-2"
+     cx="374.99634"
+     cy="374.99634"
+     id="circle1"
+     style="stroke-width:2.88636"
+     r="204.75864"
+     clip-path="url(#clipPath2)" />
+  <polygon
+     class="cls-3"
+     points="77.97,6.92 62.01,56.82 9.88,56.71 52.17,87.1 36.33,136.24 77.97,105.85 119.58,136.24 103.76,87.1 146.02,56.71 93.92,56.71 "
+     id="polygon1"
+     transform="matrix(2.8863635,0,0,2.8863635,150.0043,150.00431)"
+     clip-path="url(#clipPath1)" />
+</svg>

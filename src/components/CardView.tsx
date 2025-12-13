@@ -7,6 +7,7 @@ import NestPart from "./NestPart";
 import EggsPart from "./EggsPart";
 import WingspanPart from "./WingspanPart";
 import PowerPart from "./PowerPart";
+import ExpansionIcon from "./ExpansionIcon";
 
 export default function CardView(props : {bird : Bird}) {
   const colorsMap: {[key in Color]: string} = {
@@ -59,6 +60,9 @@ export default function CardView(props : {bird : Bird}) {
       </div>
       <div className="trivia overlay">
         {props.bird.trivia}
+      </div>
+      <div className="expansion-icon overlay">
+        <ExpansionIcon expansion={props.bird.expansion} subExpansion={props.bird.subExpansion} />
       </div>
     </div>
   )

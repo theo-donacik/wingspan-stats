@@ -9,39 +9,6 @@ export default function PowerPart(props : {powerColor : Color, powerText : strin
     [Color.Yellow]: "GAME END"
   }
 
-  //   const iconMap: {[value: string]: string} = {
-  //   "[card]": process.env.PUBLIC_URL + "/img/icons/card.png",
-  //   "[cards]": process.env.PUBLIC_URL + "/img/icons/card.png",
-
-  //   "[worm]": process.env.PUBLIC_URL + "/img/icons/worm.png",
-  //   "[worms]": process.env.PUBLIC_URL + "/img/icons/worm.png",
-  //   "[wheat]": process.env.PUBLIC_URL + "/img/icons/wheat.png",
-  //   "[cherry]": process.env.PUBLIC_URL + "/img/icons/cherry.png",
-  //   "[cherries]": process.env.PUBLIC_URL + "/img/icons/cherry.png",
-
-  //   "[fish]": process.env.PUBLIC_URL + "/img/icons/fish.png",
-  //   "[rat]": process.env.PUBLIC_URL + "/img/icons/rat.png",
-  //   "[rats]": process.env.PUBLIC_URL + "/img/icons/rat.png",
-  //   "[nectar]": process.env.PUBLIC_URL + "/img/icons/nectar.png",
-  //   "[food]": process.env.PUBLIC_URL + "/img/icons/any-food.png",
-  //   "[die]": process.env.PUBLIC_URL + "/img/icons/food-die.png",
-  //   "[food-die]": process.env.PUBLIC_URL + "/img/icons/food-die.png",
-
-  //   "[egg]": process.env.PUBLIC_URL + "/img/icons/egg.png",
-  //   "[eggs]": process.env.PUBLIC_URL + "/img/icons/egg.png",
-  //   "[sticky]": process.env.PUBLIC_URL + "/img/icons/sticky-nest-large.png",
-  //   "[nesty]": process.env.PUBLIC_URL + "/img/icons/nesty-nest-large.png",
-  //   "[holey]": process.env.PUBLIC_URL + "/img/icons/holey-nest-large.png",
-  //   "[eggy]": process.env.PUBLIC_URL + "/img/icons/eggy-nest-large.png",
-  //   "[star]": process.env.PUBLIC_URL + "/img/icons/star-nest-large.png",
-
-  //   "[predator]": process.env.PUBLIC_URL + "/img/icons/death.png",
-  //   "[flocking]": process.env.PUBLIC_URL + "/img/icons/tuck.png",
-  //   "[bonus]": process.env.PUBLIC_URL + "/img/icons/tuck.png",
-
-  // }
-
-
   const foods = ["wheat", "worm", "worms", "cherry", "cherries", "fish", "rat", "rats", "nectar", "die", "food die", "food dice", "food"]
   const eggs = ["egg", "eggs"]
   const nests = ["sticky", "nesty", "holey", "eggy", "star", "sticky nest", "nesty nest", "holey nest", "eggy nest", "star nest"]
@@ -80,7 +47,7 @@ export default function PowerPart(props : {powerColor : Color, powerText : strin
 
     "predator": process.env.PUBLIC_URL + "/img/icons/death.png",
     "flocking": process.env.PUBLIC_URL + "/img/icons/tuck.png",
-    "bonus card": process.env.PUBLIC_URL + "/img/icons/tuck.png",
+    "bonus card": process.env.PUBLIC_URL + "/img/icons/bonus.png",
 
     "water row": process.env.PUBLIC_URL + "/img/icons/wetland-small.png",
     "forest row": process.env.PUBLIC_URL + "/img/icons/forest-small.png",
@@ -93,6 +60,7 @@ export default function PowerPart(props : {powerColor : Color, powerText : strin
                :  props.symbol === Symbol.Bonus ? "/img/icons/bonus.png"
                :  "")
 
+  //eslint-disable-next-line
   const splitDescription = props.powerText.split(/[\[\]]/);
 
   let key = 0

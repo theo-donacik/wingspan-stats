@@ -80,6 +80,13 @@ html, body {
   transform: translate(-200px, 0%);
 }
 
+.expansion-container {
+  width: 100px;
+  top: 50%;
+  left: 50%;
+}
+
+
 .overlay.food-background {
   display: inline-block;
   width: 101px;
@@ -293,6 +300,10 @@ html, body {
   transform: translate(210px, 440px);
 }
 
+.overlay.expansion-icon {
+  transform: translate(220px, 500px);
+}
+
 .overlay.power {
   transform: translate(-90px, 340px); 
   width: 370px;
@@ -378,6 +389,21 @@ html, body {
 .wingspan-btn.selected {
   opacity: 1;
 }
+
+.expansion-icon {
+  width: 30px;
+  height: 30px;
+  object-fit:fill;
+}
+
+.expansion-icon.left {
+  transform: translate(0px, 0px);
+}
+
+.expansion-icon.right {
+  transform: translate(-10px, 0px);
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
