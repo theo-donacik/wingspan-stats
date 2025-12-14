@@ -7,6 +7,7 @@ import WingspanPart from './WingspanPart';
 import NestPart from './NestPart';
 import EggsPart from './EggsPart';
 import PointPart from './PointPart';
+import ExpansionIcon from './ExpansionIcon';
 
 export default function ListEntry(props : {bird : Bird, hidden? : boolean}){
   return(
@@ -40,6 +41,9 @@ export default function ListEntry(props : {bird : Bird, hidden? : boolean}){
               </Col>
               <Col xs={4} lg={2}>
                 <EggsPart eggs={props.bird.eggCapacity}/>
+              </Col>
+              <Col className="d-none d-xl-block" xl={1}>
+                <ExpansionIcon expansion={props.bird.expansion} subExpansion={props.bird.subExpansion} />
               </Col>
             </Row>
           </Container>
