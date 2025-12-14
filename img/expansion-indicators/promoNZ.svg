@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="Layer_1"
+   data-name="Layer 1"
+   width="1000"
+   height="1000"
+   viewBox="0 0 749.9304 750.12127"
+   version="1.1"
+   sodipodi:docname="promoNZ.svg"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="0.41000808"
+     inkscape:cx="-282.92125"
+     inkscape:cy="589.01278"
+     inkscape:window-width="2560"
+     inkscape:window-height="1440"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="Layer_1" />
+  <defs
+     id="defs1">
+    <style
+       id="style1">
+      .cls-1 {
+        fill: #ca171e;
+      }
+    </style>
+  </defs>
+  <path
+     class="cls-1"
+     d="m 389.0256,151.17912 c 206.17301,22.73066 287.38103,273.6479 124.04217,403.13938 -143.26755,113.58001 -398.88825,1.61314 -352.51663,-180.15887 24.45469,-95.90875 157.87885,-149.43581 228.55136,-69.65849 36.83584,41.57512 34.8364,117.39289 -33.14456,121.8657 3.92198,-9.23892 11.53523,-16.79136 12.91946,-27.13015 7.69015,-58.95308 -77.51675,-73.69136 -100.58721,-22.29072 -24.993,55.65347 30.2223,102.50798 86.66803,103.82782 106.89313,2.49304 170.25999,-96.20205 117.50554,-185.65822 -46.44852,-78.82409 -152.57264,-93.48904 -234.85728,-59.61301 -28.60737,11.73196 -47.37134,30.20979 -72.28744,43.2616 -7.92086,4.1795 -17.84116,11.292 -14.842,-1.83312 16.07242,-69.29188 104.9706,-118.12615 174.25888,-125.75192 14.07298,-1.53982 50.2936,-1.53982 64.36658,0 z"
+     id="path1"
+     sodipodi:nodetypes="ccccccccccccccc"
+     style="stroke-width:7.50917" />
+</svg>
