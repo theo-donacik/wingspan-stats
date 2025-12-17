@@ -16,13 +16,13 @@ export default function WingspanFilter(props : {
     if(props.symbol === '<') {
       func = (x : number) => {return x < props.num}
     }
-    else if(props.symbol === '<=') {
+    else if(props.symbol === '≤') {
       func = (x : number) => {return x <= props.num}
     }
     else if(props.symbol === '>') {
       func = (x : number) => {return x > props.num}
     }
-    else if (props.symbol === '>='){
+    else if (props.symbol === '≥'){
       func = (x : number) => {return x >= props.num}
     }
     else {
