@@ -1,5 +1,5 @@
 import { Accordion, Container, Form, InputGroup, Row, useAccordionButton } from 'react-bootstrap';
-import { Bird, ButtonState, Color, Food, Habitat, Nest, Symbol } from "../util/Types"
+import { Bird, ButtonState, Color, Expansion, Food, Habitat, Nest, SubExpansion, Symbol } from "../util/Types"
 import ThreeWayFilter from './ThreeWayFilter';
 import TwoWayFilter from './TwoWayFilter';
 import SliderFilter from './SliderFilter';
@@ -8,14 +8,15 @@ import ColorFilter from './ColorFilter';
 import SymbolFilter from './SymbolFilter';
 import { useState } from 'react';
 import { FunnelFill } from 'react-bootstrap-icons';
+import ExpansionFilter from './ExpansionFilter';
 
 export default function FilterBox(props : {
   filters : {[id: string]: (bird: Bird) => boolean},
   setFilters : React.Dispatch<React.SetStateAction<{[id: string]: (bird: Bird) => boolean}>>
 }) {
   const [wingspanSelector, setWingspanSelector] = useState<(arg: boolean) => void>((bool : boolean) => () => {})
-  const [colorSelector, setColorSelector] = useState<(arg: boolean) => void>((bool : boolean) => () => {})
   const [symbolSelector, setSymbolSelector] = useState<(arg: boolean) => void>((bool : boolean) => () => {})
+  const [expansionSelector, setExpansionSelector] = useState<(arg: boolean) => void>((bool : boolean) => () => {})
 
   const ThreeWayFilterMap: {[value: string]: [string, {(bird: Bird): boolean}]} = {
     "worm-filter" : ["/img/icons/worm.png", (bird) => bird.food[Food.Worm] !== 0],
@@ -47,21 +48,38 @@ export default function FilterBox(props : {
   }
 
   const WingspanFilters : [number, string][] = [
-    [30, "<="],
+    [30, "≤"],
     [40, "<"],
     [50, "<"],
     [65, ">"],
     [75, "<"],
     [100, "<"],
-    [100, ">="]
+    [100, "≥"]
   ]
 
-  const ColorFilters : Record<keyof typeof Color, string> = {
-    Brown : '#CF7936',
-    Pink : "#FEB0B5",
-    Yellow : "#FDD038",
-    Teal : "#A0DCC9",
-    White : "#F1F3F0",
+  const ColorFilterMap: {[value: string]: [string, {(bird: Bird): boolean}]} = {
+    "Brown" : ["#CF7936", (bird) => bird.powerColor !== Color.Brown],
+    "Pink" : ["#FEB0B5", (bird) => bird.powerColor !== Color.Pink],
+    "Yellow" : ["#FDD038", (bird) => bird.powerColor !== Color.Yellow],
+    "Teal" : ["#A0DCC9", (bird) => bird.powerColor !== Color.Teal],
+    "White" : ["#F1F3F0", (bird) => bird.powerColor !== Color.White],
+  }
+
+  const ExpansionMap: Record<string, string> = {
+    [Expansion.NorthAmerica.valueOf()] : "/img/expansion-indicators/base.svg",
+    [Expansion.Asia.valueOf()] : "/img/expansion-indicators/asia.svg",
+    [Expansion.European.valueOf()] : "/img/expansion-indicators/european.svg",
+    [Expansion.Oceania.valueOf()] : "/img/expansion-indicators/oceania.svg",
+    [Expansion.FanDesigned.valueOf()] : "/img/expansion-indicators/promo.svg",
+  }
+
+  const SubExpansionMap: Record<string, string> = {
+    [SubExpansion.Asian.valueOf()] : "/img/expansion-indicators/promoAsia.svg",
+    [SubExpansion.British.valueOf()] : "/img/expansion-indicators/promoUK.png",
+    [SubExpansion.Canada.valueOf()] : "/img/expansion-indicators/promoCA.svg",
+    [SubExpansion.Europe.valueOf()] : "/img/expansion-indicators/promoEurope.svg",
+    [SubExpansion.NewZealand.valueOf()] : "/img/expansion-indicators/promoNZ.svg",
+    [SubExpansion.USA.valueOf()] : "/img/expansion-indicators/promoUS.svg",
   }
 
   const SymbolFilters : Record<keyof typeof Symbol, string> = {
@@ -106,6 +124,11 @@ export default function FilterBox(props : {
 
   const handleTwoWay = (filter : string, state : Boolean) => {
     var filterFun = TwoWayFilterMap[filter][1]
+    toggleFilter(filter, filterFun)
+  }
+
+  const handleColor = (filter : string, state : Boolean) => {
+    var filterFun = ColorFilterMap[filter][1]
     toggleFilter(filter, filterFun)
   }
 
@@ -200,29 +223,6 @@ export default function FilterBox(props : {
                 )
               })
             }
-          </Row>
-          <Row>
-            {
-              Object.keys(Color).map((name) => {
-                return (
-                  <ColorFilter 
-                    name={name as Color}
-                    color={ColorFilters[name as Color]}
-                    handler={(filter, selected, setSelected) => handleToggle(
-                      (bird : Bird) => filter(bird.powerColor),
-                      selected,
-                      setSelected,
-                      colorSelector,
-                      setColorSelector,
-                      "color-filter"
-                    )}
-                    key={name}
-                  />
-                )
-              })
-            }
-          </Row>
-          <Row>
             {
                 Object.keys(Symbol).map((symbol) => {
                   return (
@@ -243,6 +243,64 @@ export default function FilterBox(props : {
                   )
                 })
               }
+          </Row>
+          <Row>
+            {
+              Object.keys(Color).map((name) => {
+                return (
+                  <ColorFilter 
+                    name={name as Color}
+                    color={ColorFilterMap[name as Color][0]}
+                    handler={handleColor}
+                    key={name}
+                  />
+                )
+              })
+            }
+          </Row>
+          <Row>
+            {
+              Object.values(Expansion).map((expansion) => {
+                return (
+                  <ExpansionFilter 
+                    expansion={expansion as Expansion}
+                    img={process.env.PUBLIC_URL + ExpansionMap[expansion]}
+                    handler={(filter, selected, setSelected) => handleToggle(
+                      (bird : Bird) => filter(bird.expansion),
+                      selected,
+                      setSelected,
+                      expansionSelector,
+                      setExpansionSelector,
+                      "expansion-filter"
+                    )}
+                    key={expansion}
+                  />
+                )
+              })
+            }
+                        {
+              Object.values(SubExpansion).map((expansion) => {
+                return (
+                   expansion !== SubExpansion.Base.valueOf() 
+                && expansion !== SubExpansion.DuetSwift.valueOf()
+                && expansion !== SubExpansion.Swift.valueOf()
+                && 
+                  <ExpansionFilter 
+                    expansion={expansion as SubExpansion}
+                    img={process.env.PUBLIC_URL + SubExpansionMap[expansion]}
+                    handler={(filter, selected, setSelected) => handleToggle(
+                      (bird : Bird) => filter(bird.subExpansion),
+                      selected,
+                      setSelected,
+                      expansionSelector,
+                      setExpansionSelector,
+                      "expansion-filter"
+                    )}
+                    key={expansion}
+                  />
+                )
+              })
+            }
           </Row>
           <Row>
             {

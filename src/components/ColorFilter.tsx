@@ -5,17 +5,13 @@ import { Button, Col } from "react-bootstrap";
 export default function ColorFilter(props : {
   name : Color,
   color : string, 
-  handler : {(
-    filter : (color : Color) => boolean, 
-    selected : boolean,
-    setSelected : (arg : boolean) => void) : void
-  }}) {
-    const [selected, setSelected] = useState(false);
-
-    const filter = (c : Color) => c === props.name
+  handler : {(filter : string, state : Boolean) : void
+}}) {
+    const [selected, setSelected] = useState(true);
 
     const handleClick = () => {
-      props.handler(filter, selected, setSelected)
+      setSelected(!selected)
+      props.handler(props.name as string, selected)
     }
 
     return (

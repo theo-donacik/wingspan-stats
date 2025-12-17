@@ -1,19 +1,21 @@
 import { useEffect, useState } from "react";
-import { Symbol } from "../util/Types";
+import { Expansion, SubExpansion } from "../util/Types";
 import { Col } from "react-bootstrap";
 
-export default function SymbolFilter(props : {
-  symbol : Symbol,
+export default function ExpansionFilter(props : {
+  expansion : Expansion | SubExpansion,
   img : string, 
   handler : {(
-    filter : (symbol : Symbol) => boolean, 
+    filter : (expansion : Expansion | SubExpansion) => boolean, 
     selected : boolean,
     setSelected : (arg : boolean) => void) : void
   }}) {
     const [selected, setSelected] = useState(false);
     const [imgClass, setImgClass] = useState("two-way-btn")
 
-    const filter = (symbol : Symbol) => symbol === props.symbol
+    const filter = (expansion : Expansion | SubExpansion) => {
+      return expansion === props.expansion
+    }
 
     useEffect(() => {
       setImgClass("two-way-btn " + (selected ? "active" : "inactive"))
@@ -24,7 +26,7 @@ export default function SymbolFilter(props : {
     }
 
     return (
-      <Col md={1} xs={2} onClick={handleClick}>
+      <Col md={1} xs={1} onClick={handleClick}>
         <img alt="" className={imgClass} src={props.img} />
       </Col>
     )
