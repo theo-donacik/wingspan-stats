@@ -1,4 +1,6 @@
 # A Wingspan Card search tool 
+Site available at: https://theo-donacik.github.io/wingspan-stats/
+
 A tool for viewing, searching, and filtering cards from the Wingspan board game
 
 Data collected from a copy of the game aggregated here: https://docs.google.com/spreadsheets/d/1KmfrOSRiDgbGzWZYpEUghyhOhI1YELJUPyHD9S9bHw8/edit?gid=0#gid=0

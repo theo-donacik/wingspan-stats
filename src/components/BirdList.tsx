@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Stack } from 'react-bootstrap';
 import { Bird } from '../util/Types';
 import ListEntry from './ListEntry';
@@ -32,6 +32,7 @@ export default function BirdList(props : {birds : Bird[]}){
         toRender.push(bird)
       }
     }
+
     return toRender
   }
 

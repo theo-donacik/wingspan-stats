@@ -1,5 +1,5 @@
-import { Accordion, Container, Form, InputGroup, Row, useAccordionButton } from 'react-bootstrap';
-import { Bird, ButtonState, Color, Expansion, Food, Habitat, Nest, SubExpansion, Symbol } from "../util/Types"
+import { Accordion, Col, Container, Form, InputGroup, Row, useAccordionButton } from 'react-bootstrap';
+import { BeakDir, Bird, ButtonState, Color, Expansion, Food, Habitat, Nest, SubExpansion, Symbol } from "../util/Types"
 import ThreeWayFilter from './ThreeWayFilter';
 import TwoWayFilter from './TwoWayFilter';
 import SliderFilter from './SliderFilter';
@@ -17,6 +17,9 @@ export default function FilterBox(props : {
   const [wingspanSelector, setWingspanSelector] = useState<(arg: boolean) => void>((bool : boolean) => () => {})
   const [symbolSelector, setSymbolSelector] = useState<(arg: boolean) => void>((bool : boolean) => () => {})
   const [expansionSelector, setExpansionSelector] = useState<(arg: boolean) => void>((bool : boolean) => () => {})
+  const [fanArtBeakDir, setFanArtBeakDir] = useState<boolean>(false)
+
+  const FanArtBeakDirIcon = process.env.PUBLIC_URL + "/img/icons/fan-art.svg"
 
   const ThreeWayFilterMap: {[value: string]: [string, {(bird: Bird): boolean}]} = {
     "worm-filter" : ["/img/icons/worm.png", (bird) => bird.food[Food.Worm] !== 0],
@@ -40,6 +43,21 @@ export default function FilterBox(props : {
     "nesty-filter" : ["/img/icons/nesty-nest-large.png", (bird) => bird.nest !== Nest.Nesty],
     "star-filter" : ["/img/icons/star-nest-large.png", (bird) => bird.nest !== Nest.Star],
     "none-filter" : ["/img/icons/none.png", (bird) => bird.nest !== Nest.None],
+  }
+
+  function checkArt(bird: Bird, direction: BeakDir): boolean {
+    return bird.artCard ? bird.artCardBeakDirection !== direction : checkBase(bird, direction)
+  }
+
+  function checkBase(bird: Bird, direction: BeakDir): boolean {
+    return bird.beakDirection !== direction
+  }
+
+  const BeakDirFilterMap: {[value: string]: [string, {(art: boolean): (bird: Bird) => boolean }]} = {
+    "left-filter" : ["/img/icons/beak-left.png", (art) => (art ? (b : Bird) => checkArt(b, BeakDir.Left) : (b : Bird) => checkBase(b, BeakDir.Left))],
+    "right-filter" : ["/img/icons/beak-right.png", (art) => (art ? (b : Bird) => checkArt(b, BeakDir.Right) : (b : Bird) => checkBase(b, BeakDir.Right))],
+    "both-filter" : ["/img/icons/slash.png", (art) => (art ? (b : Bird) => checkArt(b, BeakDir.Both) : (b : Bird) => checkBase(b, BeakDir.Both))],
+    "neither-filter" : ["/img/icons/no-food.png", (art) => (art ? (b : Bird) => checkArt(b, BeakDir.Neither) : (b : Bird) => checkBase(b, BeakDir.Neither))],
   }
 
   const SliderFilterMap: {[value: string]: [string, {(bird: Bird, upper : number, lower : number): boolean}, number, number]} = {
@@ -125,6 +143,26 @@ export default function FilterBox(props : {
   const handleTwoWay = (filter : string, state : Boolean) => {
     var filterFun = TwoWayFilterMap[filter][1]
     toggleFilter(filter, filterFun)
+  }
+
+  const handleBeakFilter = (filter : string) => {
+    var filterFun = BeakDirFilterMap[filter][1](fanArtBeakDir)
+    toggleFilter(filter, filterFun)
+  }
+
+  const toggleFanArt = () => {
+    setFanArtBeakDir(!fanArtBeakDir)
+
+    var dictKeys: string[] = Object.keys(BeakDirFilterMap)
+    const updatedFilters = {...props.filters}
+
+    for(var key in dictKeys) {
+      let filterKey = dictKeys[key]
+      if(filterKey in props.filters) {
+        updatedFilters[filterKey] = BeakDirFilterMap[filterKey][1](!fanArtBeakDir)
+      }
+    }
+    props.setFilters(updatedFilters)
   }
 
   const handleColor = (filter : string, state : Boolean) => {
@@ -257,6 +295,23 @@ export default function FilterBox(props : {
                 )
               })
             }
+          </Row>
+          <Row>
+            {
+              Object.keys(BeakDirFilterMap).map((filter : string) => {
+                return (
+                  <TwoWayFilter
+                    filter={filter} 
+                    img={process.env.PUBLIC_URL + BeakDirFilterMap[filter][0]}
+                    handler={(state : Boolean) => handleBeakFilter(filter)}
+                    key={filter}
+                  />
+                )
+              })
+            }
+            <Col md={1} xs={2} id={"fanart"} onClick={toggleFanArt}>
+              <img alt="" className={"two-way-btn " + (fanArtBeakDir ? "active" : "inactive")} src={FanArtBeakDirIcon} key={0}/>
+            </Col>
           </Row>
           <Row>
             {
