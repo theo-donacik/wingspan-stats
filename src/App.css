@@ -11,6 +11,10 @@ html, body {
   background-color: #AAE4DE;
 }
 
+.bird-count {
+  font-size: 25px;
+}
+
 .list-entry {
   height: 100px,
 }
@@ -378,15 +382,20 @@ html, body {
   font-size: 40px;
 }
 
-.wingspan-btn.normal {
-  color: black;
+.wingspan-btn-text {
   opacity: .3;
   font-weight: bold;
   background-color: transparent;
-  border: none;
 }
 
-.wingspan-btn.selected {
+.wingspan-btn {
+   outline: none !important;
+   box-shadow: none;
+   border: none;
+   background-color: transparent;
+}
+
+.wingspan-btn-text.selected {
   opacity: 1;
 }
 

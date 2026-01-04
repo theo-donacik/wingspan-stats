@@ -9,6 +9,8 @@ export default function BirdList(props : {birds : Bird[]}){
   const INIT_RENDER = 50
   const [numRender, setNumRender] = useState<number>(INIT_RENDER);
   const [filters, setFilters] = useState<{[id: string] : {(bird: Bird): boolean}}>({});
+  const [birdList, setBirdList] = useState<Bird[]>([]);
+  const [renderedCount, setRenderedCount] = useState<number>(0);
   
   
   useEffect(() => {
@@ -22,25 +24,23 @@ export default function BirdList(props : {birds : Bird[]}){
 
   useEffect(() => {
     setNumRender(INIT_RENDER);
-  }, [filters])
 
-  const createBirdList = () : Bird[] => {
     let toRender = []
-    for (let i = 0; toRender.length < numRender && i < props.birds.length; i+=1){
+    for (let i = 0; i < props.birds.length; i+=1){
       let bird = props.birds[i]
       if(Object.values(filters).every(filter => filter(bird))){
         toRender.push(bird)
       }
     }
-
-    return toRender
-  }
+    setRenderedCount(toRender.length)
+    setBirdList(toRender.slice(0, numRender))
+  }, [filters, props.birds, numRender])
 
   return(
     <Stack gap={3}>
-      <FilterBox filters={filters} setFilters={setFilters}/>
+      <FilterBox filters={filters} setFilters={setFilters} count={renderedCount} total={props.birds.length}/>
       {
-        createBirdList().map((bird) => {
+        birdList.map((bird) => {
           return(<ListEntry bird={bird} key={bird.name}/>)
         })
       }

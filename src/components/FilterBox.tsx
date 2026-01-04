@@ -12,11 +12,12 @@ import ExpansionFilter from './ExpansionFilter';
 
 export default function FilterBox(props : {
   filters : {[id: string]: (bird: Bird) => boolean},
-  setFilters : React.Dispatch<React.SetStateAction<{[id: string]: (bird: Bird) => boolean}>>
+  setFilters : React.Dispatch<React.SetStateAction<{[id: string]: (bird: Bird) => boolean}>>,
+  count: number,
+  total: number
 }) {
   const [wingspanSelector, setWingspanSelector] = useState<(arg: boolean) => void>((bool : boolean) => () => {})
   const [symbolSelector, setSymbolSelector] = useState<(arg: boolean) => void>((bool : boolean) => () => {})
-  const [expansionSelector, setExpansionSelector] = useState<(arg: boolean) => void>((bool : boolean) => () => {})
   const [fanArtBeakDir, setFanArtBeakDir] = useState<boolean>(false)
 
   const FanArtBeakDirIcon = process.env.PUBLIC_URL + "/img/icons/fan-art.svg"
@@ -83,21 +84,21 @@ export default function FilterBox(props : {
     "White" : ["#F1F3F0", (bird) => bird.powerColor !== Color.White],
   }
 
-  const ExpansionMap: Record<string, string> = {
-    [Expansion.NorthAmerica.valueOf()] : "/img/expansion-indicators/base.svg",
-    [Expansion.Asia.valueOf()] : "/img/expansion-indicators/asia.svg",
-    [Expansion.European.valueOf()] : "/img/expansion-indicators/european.svg",
-    [Expansion.Oceania.valueOf()] : "/img/expansion-indicators/oceania.svg",
-    [Expansion.FanDesigned.valueOf()] : "/img/expansion-indicators/promo.svg",
+  const ExpansionMap: {[value: string]: [string, {(bird: Bird): boolean}]} = {
+    [Expansion.NorthAmerica.valueOf()] : ["/img/expansion-indicators/base.svg", (bird) => bird.expansion !== Expansion.NorthAmerica],
+    [Expansion.Asia.valueOf()] : ["/img/expansion-indicators/asia.svg", (bird) => bird.expansion !== Expansion.Asia],
+    [Expansion.European.valueOf()] : ["/img/expansion-indicators/european.svg", (bird) => bird.expansion !== Expansion.European],
+    [Expansion.Oceania.valueOf()] : ["/img/expansion-indicators/oceania.svg", (bird) => bird.expansion !== Expansion.Oceania],
+    [Expansion.FanDesigned.valueOf()] : ["/img/expansion-indicators/promo.svg", (bird) => bird.expansion !== Expansion.FanDesigned],
   }
 
-  const SubExpansionMap: Record<string, string> = {
-    [SubExpansion.Asian.valueOf()] : "/img/expansion-indicators/promoAsia.svg",
-    [SubExpansion.British.valueOf()] : "/img/expansion-indicators/promoUK.png",
-    [SubExpansion.Canada.valueOf()] : "/img/expansion-indicators/promoCA.svg",
-    [SubExpansion.Europe.valueOf()] : "/img/expansion-indicators/promoEurope.svg",
-    [SubExpansion.NewZealand.valueOf()] : "/img/expansion-indicators/promoNZ.svg",
-    [SubExpansion.USA.valueOf()] : "/img/expansion-indicators/promoUS.svg",
+  const SubExpansionMap: {[value: string]: [string, {(bird: Bird): boolean}]}  = {
+    [SubExpansion.Asian.valueOf()] : ["/img/expansion-indicators/promoAsia.svg", (bird) => bird.subExpansion !== SubExpansion.Asian],
+    [SubExpansion.British.valueOf()] : ["/img/expansion-indicators/promoUK.png", (bird) => bird.subExpansion !== SubExpansion.British],
+    [SubExpansion.Canada.valueOf()] : ["/img/expansion-indicators/promoCA.svg", (bird) => bird.subExpansion !== SubExpansion.Canada],
+    [SubExpansion.Europe.valueOf()] : ["/img/expansion-indicators/promoEurope.svg", (bird) => bird.subExpansion !== SubExpansion.Europe],
+    [SubExpansion.NewZealand.valueOf()] : ["/img/expansion-indicators/promoNZ.svg", (bird) => bird.subExpansion !== SubExpansion.NewZealand],
+    [SubExpansion.USA.valueOf()] : ["/img/expansion-indicators/promoUS.svg", (bird) => bird.subExpansion !== SubExpansion.USA],
   }
 
   const SymbolFilters : Record<keyof typeof Symbol, string> = {
@@ -169,6 +170,16 @@ export default function FilterBox(props : {
     var filterFun = ColorFilterMap[filter][1]
     toggleFilter(filter, filterFun)
   }
+
+  const handleExpansion = (filter : string, state : Boolean) => {
+    var filterFun = ExpansionMap[filter][1]
+    toggleFilter(filter, filterFun)
+  } 
+
+  const handleSubExpansion = (filter : string, state : Boolean) => {
+    var filterFun = SubExpansionMap[filter][1]
+    toggleFilter(filter, filterFun)
+  }   
 
   const handleSlider = (filter : string, upper : number, lower : number) => {
     var filterFun = (bird: Bird) => SliderFilterMap[filter][1](bird, upper, lower)
@@ -318,22 +329,16 @@ export default function FilterBox(props : {
               Object.values(Expansion).map((expansion) => {
                 return (
                   <ExpansionFilter 
+                    filterName={expansion}
                     expansion={expansion as Expansion}
-                    img={process.env.PUBLIC_URL + ExpansionMap[expansion]}
-                    handler={(filter, selected, setSelected) => handleToggle(
-                      (bird : Bird) => filter(bird.expansion),
-                      selected,
-                      setSelected,
-                      expansionSelector,
-                      setExpansionSelector,
-                      "expansion-filter"
-                    )}
+                    img={process.env.PUBLIC_URL + ExpansionMap[expansion][0]}
+                    handler={handleExpansion}
                     key={expansion}
                   />
                 )
               })
             }
-                        {
+            {
               Object.values(SubExpansion).map((expansion) => {
                 return (
                    expansion !== SubExpansion.Base.valueOf() 
@@ -341,16 +346,10 @@ export default function FilterBox(props : {
                 && expansion !== SubExpansion.Swift.valueOf()
                 && 
                   <ExpansionFilter 
+                    filterName={expansion}
                     expansion={expansion as SubExpansion}
-                    img={process.env.PUBLIC_URL + SubExpansionMap[expansion]}
-                    handler={(filter, selected, setSelected) => handleToggle(
-                      (bird : Bird) => filter(bird.subExpansion),
-                      selected,
-                      setSelected,
-                      expansionSelector,
-                      setExpansionSelector,
-                      "expansion-filter"
-                    )}
+                    img={process.env.PUBLIC_URL + SubExpansionMap[expansion][0]}
+                    handler={handleSubExpansion}
                     key={expansion}
                   />
                 )
@@ -372,6 +371,11 @@ export default function FilterBox(props : {
                 )
               })
             }
+          </Row>
+          <Row>
+            <div className={"bird-count"}>
+             {props.count} / {props.total} ({((props.count / props.total) * 100).toFixed(1)}%)
+            </div>
           </Row>
         </Container>
       </Accordion.Collapse>

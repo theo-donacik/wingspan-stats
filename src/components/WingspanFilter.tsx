@@ -33,9 +33,8 @@ export default function WingspanFilter(props : {
 
   return(
     <Col md={1} xs={2}>
-      <Button variant='custom' onClick={() => onClick()} className={"wingspan-btn " + 
-                                                                    (selected ? "selected" : "normal")}>
-        <h2>{props.symbol === "clear" ? props.symbol : props.symbol + props.num}</h2>
+      <Button variant='custom' className="wingspan-btn" onClick={() => onClick()}>
+        <h2 className={"wingspan-btn-text " + (selected ? "selected" : "")}>{props.symbol === "clear" ? props.symbol : props.symbol + props.num}</h2>
       </Button>
     </Col>
   )

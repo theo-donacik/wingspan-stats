@@ -3,26 +3,21 @@ import { Expansion, SubExpansion } from "../util/Types";
 import { Col } from "react-bootstrap";
 
 export default function ExpansionFilter(props : {
+  filterName: string
   expansion : Expansion | SubExpansion,
   img : string, 
-  handler : {(
-    filter : (expansion : Expansion | SubExpansion) => boolean, 
-    selected : boolean,
-    setSelected : (arg : boolean) => void) : void
-  }}) {
-    const [selected, setSelected] = useState(false);
+  handler : {(filter : string, state : Boolean) : void
+}}) {
+    const [selected, setSelected] = useState(true);
     const [imgClass, setImgClass] = useState("two-way-btn")
-
-    const filter = (expansion : Expansion | SubExpansion) => {
-      return expansion === props.expansion
-    }
 
     useEffect(() => {
       setImgClass("two-way-btn " + (selected ? "active" : "inactive"))
     }, [selected])
 
     const handleClick = () => {
-      props.handler(filter, selected, setSelected)
+      setSelected(!selected)
+      props.handler(props.filterName, !selected)
     }
 
     return (
